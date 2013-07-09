@@ -1,6 +1,6 @@
 {
   "configs" : [ {
-    "excludedFiles" : [ ],
+    "excludedFiles" : [ "\\howto.lua" ],
     "config_name" : "default",
     "plugin_props" : {
       "corona" : {

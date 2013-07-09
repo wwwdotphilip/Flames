@@ -9,21 +9,20 @@ local text = {}
 local title;
 local scene = storyboard.newScene();
 local about = "Flames is a love test popular in elementary and high school students who are begining to explore the world of crushes." ..
-                "\n\nDisclaimer: This application is entended for entertainment purposes only. I am not liable for any lost lives, limbs, love life or any other unfortunate curcumstances related to using this application." ..
-                "\n\nYou can help improve this application by giving suggestions" ..
-                "Email at wwwdotphilip@gmail.com" ..
-                "PM me on facebook www.facebook.com/wwwdotphilip" ..
-                "or visit my website at www.lazyjuan.webs.com/" ..
-                "\n\nVersion 1.0" .. "\nDeveloped by: LaZ-y Juan"
-
+"\n\nYou can help improve this application by giving suggestions" ..
+"\nEmail me at wwwdotphilip@gmail.com" ..
+"\nPM me on facebook www.facebook.com/wwwdotphilip" ..
+"\nor visit my website at www.lazyjuan.webs.com/" ..
+"\n\nVersion 1.0" .. "\nDeveloped by: LaZ-y Juan"
+local disclaimer = "This application is entended for entertainment purposes only. I am not liable for any lost of lives, limbs, love life or any other unfortunate circumstances related to using this application."
 display.setStatusBar(display.HiddenStatusBar);
 
 local function buttonEvent(event)
     local t = event.target
     if(t.name == "start") then
         storyboard.gotoScene("FlamesScreen", "fade", 400)
-    elseif(t.name == "howto") then
-        storyboard.gotoScene("howto", "fade", 400)
+    elseif(t.name == "disclaimer") then
+        native.showAlert("Disclaimer", disclaimer, {"Close"})
     else
         native.showAlert("About", about, {"Close"})
     end
@@ -57,11 +56,11 @@ function scene:createScene( event )
         height = 120,
         fontSize = 70,
         font = "KatyBerry",
-        label = "How to?",
+        label = "Disclaimer",
         onRelease = buttonEvent
     };
     button.howto.x = _W / 2; button.howto.y = (_H / 2) + 130;
-    button.howto.name = "howto"
+    button.howto.name = "disclaimer"
     
     button.about = widget.newButton{
         defaultFile = "images/button.png",
