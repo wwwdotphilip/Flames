@@ -25,6 +25,3 @@ local function onKeyEvent( event )
 end
 
 Runtime:addEventListener( "key", onKeyEvent );
-
-local sysFonts = native.getFontNames()
-for k,v in pairs(sysFonts) do print(v) end

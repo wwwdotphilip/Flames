@@ -8,7 +8,7 @@ local button = {};
 local text = {}
 local title;
 local scene = storyboard.newScene();
-local about = "Flames is a popular love calculator to elementary and high school students who are begining to explore the world of crushes." ..
+local about = "Flames is a love test popular in elementary and high school students who are begining to explore the world of crushes." ..
                 "\n\nDisclaimer: This application is entended for entertainment purposes only. I am not liable for any lost lives, limbs, love life or any other unfortunate curcumstances related to using this application." ..
                 "\n\nYou can help improve this application by giving suggestions" ..
                 "Email at wwwdotphilip@gmail.com" ..
