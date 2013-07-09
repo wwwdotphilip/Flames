@@ -29,7 +29,7 @@ local function buttonEvent(event)
         local name2 = name_two.text
         local str
         local finalname;
-        local loopnum = 1
+        local loopnum = 0
         if(name_one.text ~= "" and name_two.text ~= "") then
             str = name_two.text;
             for i = 1, #str do
@@ -43,13 +43,27 @@ local function buttonEvent(event)
             end
         end
         finalname = name1..name2
-        for i = 1, #finalname do
-            if(loopnum <= 6) then
-                loopnum = loopnum + 1;
-            else
-                loopnum = 1
+        if(finalname ~= "") then
+            for i = 1, #finalname do
+                if(i == #finalname) then
+                    if(loopnum < 6) then
+                        loopnum = loopnum + 1
+                    elseif(loopnum > 6) then
+                        loopnum = 1
+                    elseif(loopnum == 6) then
+                        
+                    end
+                elseif(loopnum <= 5) then
+                    loopnum = loopnum + 1;
+                elseif(loopnum == 6) then
+                    loopnum = 1
+                end
+                print(loopnum)
             end
+        else
+            loopnum = 1
         end
+        
         print(finalname)
         print(loopnum)
         print(flames[loopnum]);
