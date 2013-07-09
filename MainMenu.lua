@@ -8,13 +8,14 @@ local button = {};
 local text = {}
 local title;
 local scene = storyboard.newScene();
-local about = "Flames is a love test popular in elementary and high school students who are begining to explore the world of crushes." ..
+local about = "Flames is a love matching game popular in elementary and high school students who are begining to explore the world of crushes." ..
 "\n\nYou can help improve this application by giving suggestions" ..
 "\nEmail me at wwwdotphilip@gmail.com" ..
 "\nPM me on facebook www.facebook.com/wwwdotphilip" ..
 "\nor visit my website at www.lazyjuan.webs.com/" ..
-"\n\nVersion 1.0" .. "\nDeveloped by: LaZ-y Juan"
-local disclaimer = "This application is entended for entertainment purposes only. I am not liable for any lost of lives, limbs, love life or any other unfortunate circumstances related to using this application."
+"\n\nVersion 1.0" .. "\nDeveloped by: LaZy Juan"
+local disclaimer = "This application is entended for entertainment purposes only. I am not liable for any lost of lives, limbs, love life or any other unfortunate circumstances related to using this application." ..
+"\n\nCopyright \nSome images used in this application are from the internet, such as the logo which I obtained from Photobucket user Toshi20. If you saw that one of your work is in this app please notify me, so I can give you credits or want to remove it. And please don't sue me."
 display.setStatusBar(display.HiddenStatusBar);
 
 local function buttonEvent(event)
@@ -44,7 +45,8 @@ function scene:createScene( event )
         fontSize = 70,
         font = "KatyBerry",
         label = "Start Flames",
-        onRelease = buttonEvent
+        onRelease = buttonEvent,
+        labelYOffset = 10
     };
     button.start.x = _W / 2; button.start.y = _H / 2;
     button.start.name = "start"
@@ -57,7 +59,8 @@ function scene:createScene( event )
         fontSize = 70,
         font = "KatyBerry",
         label = "Disclaimer",
-        onRelease = buttonEvent
+        onRelease = buttonEvent,
+        labelYOffset = 10
     };
     button.howto.x = _W / 2; button.howto.y = (_H / 2) + 130;
     button.howto.name = "disclaimer"
@@ -70,7 +73,8 @@ function scene:createScene( event )
         fontSize = 70,
         font = "KatyBerry",
         label = "About",
-        onRelease = buttonEvent
+        onRelease = buttonEvent,
+        labelYOffset = 10
     };
     button.about.x = _W / 2; button.about.y = (_H / 2) + 260;
     button.about.name = "about"

@@ -115,7 +115,8 @@ function scene:createScene( event )
         fontSize = 75,
         font = "KatyBerry",
         label = "Get Flames",
-        onRelease = buttonEvent
+        onRelease = buttonEvent,
+        labelYOffset = 10
     };
     button.get.x = _W / 2; button.get.y = (_H / 2) + 70;
     button.get.name = "get"
@@ -128,7 +129,8 @@ function scene:createScene( event )
         fontSize = 75,
         font = "KatyBerry",
         label = "Reset",
-        onRelease = buttonEvent
+        onRelease = buttonEvent,
+        labelYOffset = 10
     };
     button.reset.x = _W / 2; button.reset.y = (_H / 2) + 200;
     button.reset.name = "reset"
@@ -141,7 +143,8 @@ function scene:createScene( event )
         fontSize = 75,
         font = "KatyBerry",
         label = "Go back",
-        onRelease = buttonEvent
+        onRelease = buttonEvent,
+        labelYOffset = 10
     };
     button.back.x = _W / 2; button.back.y = (_H / 2) + 330;
     button.back.name = "back"
