@@ -6,17 +6,22 @@ local screenGroup;
 local bg;
 local button = {};
 local text = {}
-local flames = {"Friends", "Lovers", "Affectionate", "Marraige", "Enemies", "Siblings"};
+local flames = {{"Friends"},{ "Lovers"},{ "Affectionate"},{ "Marraige"},{ "Enemies"},{ "Sweethearts"}};
 local scene = storyboard.newScene();
 display.setStatusBar(display.HiddenStatusBar);
 local name_one;
 local name_two;
 local skiprate = false;
-local newName;
+local rate = 1;
+local skiprate = false;
 
 local function ratelistener(event)
     if(event.index == 1) then
-        
+        local options =
+        {
+            supportedAndroidStores = { "google" },
+        }
+        native.showPopup("rateApp", options)
     else
         skiprate = true;
     end
@@ -67,17 +72,27 @@ local function buttonEvent(event)
         print(finalname)
         print(loopnum)
         print(flames[loopnum]);
-        text.result.text = "As " .. flames[loopnum];
+        local randval =  table.getn(flames[loopnum])
+        text.result.text = "As " .. flames[loopnum][math.random(1, randval)];
         native.setKeyboardFocus(nil)
+        
+        if(rate == 6 and skiprate == false) then
+            rate = 1;
+            native.showAlert("Alert", "Like this app? Please rate it.", {"Yes", "Later"}, ratelistener)
+        elseif(skiprate == true) then
+            if(rate == 12) then
+                rate = 1;
+                native.showAlert("Alert", "Like this app? Please rate it.", {"Yes", "Later"}, ratelistener)
+            else
+                rate = rate + 1;
+            end
+        else
+            rate = rate + 1;
+        end
     elseif(t.name == "reset") then
-        local rate = math.random(1, 3)
         name_one.text = "";
         name_two.text = "";
         text.result.text = "";
-        if(rate == 2 and skiprate == false) then
-            print(skiprate)
-            native.showAlert("Alert", "Like this app? Please rate it.", {"Yes", "Later"}, ratelistener)
-        end
     else
         transition.to(name_one, {alpha = 0, time = 400})
         transition.to(name_two, {alpha = 0, time = 400})

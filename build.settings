@@ -33,12 +33,7 @@ settings = {
         }
     },
     
-	--[[
-	-- Android permissions
-
-	androidPermissions = {
-  		"android.permission.INTERNET",
-  	},
-
-    ]]--
+    android = {
+        versionCode = "102",
+    },
 }
