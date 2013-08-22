@@ -22,7 +22,7 @@ local function onKeyEvent( event )
     if(phase == "down" and keyName == "back") then
         transition.to(name_one, {alpha = 0, time = 400})
         transition.to(name_two, {alpha = 0, time = 400})
-        storyboard.gotoScene("MainMenu", "fade", 400)
+        storyboard.gotoScene("MainMenu", "crossFade", 400)
         return true
     end
 end
@@ -108,7 +108,7 @@ local function buttonEvent(event)
     else
         transition.to(name_one, {alpha = 0, time = 400})
         transition.to(name_two, {alpha = 0, time = 400})
-        storyboard.gotoScene("MainMenu", "fade", 400)
+        storyboard.gotoScene("MainMenu", "crossFade", 400)
     end
 end
 

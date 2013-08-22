@@ -1,7 +1,7 @@
 local storyboard = require"storyboard";
 display.setStatusBar(display.HiddenStatusBar);
 
-storyboard.gotoScene("MainMenu", "fade", 400);
+storyboard.gotoScene("MainMenu", "crossFade", 400);
 
 local function checkmem()
     collectgarbage()

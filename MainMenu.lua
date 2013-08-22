@@ -42,7 +42,7 @@ end
 local function buttonEvent(event)
     local t = event.target
     if(t.name == "start") then
-        storyboard.gotoScene("FlamesScreen", "fade", 400)
+        storyboard.gotoScene("FlamesScreen", "crossFade", 400)
     elseif(t.name == "disclaimer") then
         native.showAlert("Disclaimer", disclaimer, {"Close"})
     else
