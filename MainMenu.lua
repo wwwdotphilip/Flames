@@ -1,5 +1,5 @@
-local storyboard = require"storyboard"
-local widget = require"widget"
+local storyboard = require"storyboard";
+local widget = require"widget";
 local _W = display.contentWidth;
 local _H = display.contentHeight;
 local screenGroup;
@@ -17,6 +17,27 @@ local about = "Flames is a love matching game popular in elementary and high sch
 local disclaimer = "This application is entended for entertainment purposes only. I am not liable for any lost of lives, limbs, love life or any other unfortunate circumstances related to using this application." ..
 "\n\nCopyright \nSome images used in this application are from the internet, such as the logo which I obtained from Photobucket user Toshi20. If you saw that one of your work is in this app please notify me, so I can give you credits or want to remove it. And please don't sue me."
 display.setStatusBar(display.HiddenStatusBar);
+
+local function onComplete(event)
+    if "clicked" == event.action then
+        local i = event.index
+        if 1 == i then
+            os.exit()
+        elseif 2 == i then
+            
+        end
+    end
+end
+
+local function onKeyEvent( event )
+    local phase = event.phase
+    local keyName = event.keyName
+    
+    if(phase == "down" and keyName == "back") then
+        native.showAlert("Alert", "Exit application?", {"Yes", "No"}, onComplete)
+        return true
+    end
+end
 
 local function buttonEvent(event)
     local t = event.target
@@ -91,9 +112,11 @@ function scene:enterScene( event )
     if(prev ~= nil) then
         storyboard.removeScene(prev)
     end
+    Runtime:addEventListener( "key", onKeyEvent );
 end
 
 function scene:exitScene( event )
+    Runtime:removeEventListener( "key", onKeyEvent );
     scene:removeEventListener( "createScene", scene )
     scene:removeEventListener( "enterScene", scene )
     scene:removeEventListener( "exitScene", scene )
@@ -104,9 +127,9 @@ function scene:destroyScene( event )
     
 end
 
-scene:addEventListener( "createScene", scene )
-scene:addEventListener( "enterScene", scene )
-scene:addEventListener( "exitScene", scene )
-scene:addEventListener( "destroyScene", scene )
+scene:addEventListener( "createScene", scene );
+scene:addEventListener( "enterScene", scene );
+scene:addEventListener( "exitScene", scene );
+scene:addEventListener( "destroyScene", scene );
 
 return scene;

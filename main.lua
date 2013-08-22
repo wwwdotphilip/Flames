@@ -1,27 +1,14 @@
-local storyboard = require"storyboard"
+local storyboard = require"storyboard";
 display.setStatusBar(display.HiddenStatusBar);
 
 storyboard.gotoScene("MainMenu", "fade", 400);
 
-local function onComplete(event)
-    if "clicked" == event.action then
-        local i = event.index
-        if 1 == i then
-            os.exit()
-        elseif 2 == i then
-            
-        end
-    end
-end
-
-local function onKeyEvent( event )
-    local phase = event.phase
-    local keyName = event.keyName
+local function checkmem()
+    collectgarbage()
+    print( "MemUsage: " .. collectgarbage("count") )
     
-    if(phase == "down" and keyName == "back") then
-        native.showAlert("Alert", "Exit application?", {"Yes", "No"}, onComplete)
-    end
-    return true
+    local textMem = system.getInfo( "textureMemoryUsed" ) / 1000000
+    print( "TexMem:   " .. textMem )
 end
 
-Runtime:addEventListener( "key", onKeyEvent );
+timer.performWithDelay(3000, checkmem, 0)

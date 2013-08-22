@@ -1,12 +1,12 @@
-local storyboard = require"storyboard"
-local widget = require"widget"
+local storyboard = require"storyboard";
+local widget = require"widget";
 local _W = display.contentWidth;
 local _H = display.contentHeight;
 local screenGroup;
 local bg;
 local button = {};
-local text = {}
-local flames = {{"Friends"},{ "Lovers"},{ "Affectionate"},{ "Marraige"},{ "Enemies"},{ "Sweethearts"}};
+local text = {};
+local flames = {{"Friends", "Family"},{ "Lovers"},{ "Affectionate"},{ "Marraige"},{ "Enemies", "Engage"},{ "Sweethearts", "Siblings"}};
 local scene = storyboard.newScene();
 display.setStatusBar(display.HiddenStatusBar);
 local name_one;
@@ -14,6 +14,18 @@ local name_two;
 local skiprate = false;
 local rate = 1;
 local skiprate = false;
+
+local function onKeyEvent( event )
+    local phase = event.phase
+    local keyName = event.keyName
+    
+    if(phase == "down" and keyName == "back") then
+        transition.to(name_one, {alpha = 0, time = 400})
+        transition.to(name_two, {alpha = 0, time = 400})
+        storyboard.gotoScene("MainMenu", "fade", 400)
+        return true
+    end
+end
 
 local function ratelistener(event)
     if(event.index == 1) then
@@ -105,6 +117,12 @@ local function textlistener(event)
     local phase = event.target.phase
     if phase == "began" then
         native.setKeyboardFocus(t)
+    elseif phase == "submitted" then
+        if t.name == "name_one" then
+            native.setKeyboardFocus(name_two)
+        else
+            native.setKeyboardFocus(name_two)
+        end
     end
 end
 
@@ -163,12 +181,15 @@ function scene:createScene( event )
     };
     button.back.x = _W / 2; button.back.y = (_H / 2) + 330;
     button.back.name = "back"
+    
     local function createtextfield()
         
         name_one = native.newTextField(20, 20, 600, 85)
+        name_one.name = "name_one"
         name_one:addEventListener ("userInput", textlistener)
         
         name_two = native.newTextField(20, 210, 600, 85)
+        name_one.name = "name_two"
         name_two:addEventListener ("userInput", textlistener)
         
         local fontSize = 25;
@@ -203,9 +224,11 @@ function scene:enterScene( event )
     if(prev ~= nil) then
         storyboard.removeScene(prev)
     end
+    Runtime:addEventListener( "key", onKeyEvent );
 end
 
 function scene:exitScene( event )
+    Runtime:removeEventListener( "key", onKeyEvent );
     scene:removeEventListener( "createScene", scene )
     scene:removeEventListener( "enterScene", scene )
     scene:removeEventListener( "exitScene", scene )
@@ -216,10 +239,9 @@ function scene:destroyScene( event )
     
 end
 
-scene:addEventListener( "createScene", scene )
-scene:addEventListener( "enterScene", scene )
-scene:addEventListener( "exitScene", scene )
-scene:addEventListener( "destroyScene", scene )
+scene:addEventListener( "createScene", scene );
+scene:addEventListener( "enterScene", scene );
+scene:addEventListener( "exitScene", scene );
+scene:addEventListener( "destroyScene", scene );
 
 return scene;
-
